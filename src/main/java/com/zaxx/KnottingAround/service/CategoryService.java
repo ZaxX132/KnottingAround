@@ -15,4 +15,13 @@ public class CategoryService {
     public List<CategoryEntity> getAll(){
         return this.categoryRepository.findAll();
     }
+    public CategoryEntity save(CategoryEntity categoryEntity){
+        return this.categoryRepository.save(categoryEntity);
+    }
+    public Boolean exists(int id){
+        return this.categoryRepository.existsById(id);
+    }
+    public void delete(int id){
+        this.categoryRepository.deleteById(id);
+    }
 }

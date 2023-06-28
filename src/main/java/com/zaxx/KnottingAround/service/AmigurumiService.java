@@ -22,4 +22,13 @@ public class AmigurumiService {
     public List<AmigurumiEntity> getByCategoria(int categoria){
         return this.amigurumiRepository.findByIdCategoria(categoria);
     }
+    public AmigurumiEntity save(AmigurumiEntity amigurumi){
+        return amigurumiRepository.save(amigurumi);
+    }
+    public Boolean exists(int id){
+        return amigurumiRepository.existsById(id);
+    }
+    public void delete(int id){
+        amigurumiRepository.deleteById(id);
+    }
 }

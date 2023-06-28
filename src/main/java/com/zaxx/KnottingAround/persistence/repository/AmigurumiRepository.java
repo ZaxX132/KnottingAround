@@ -8,4 +8,5 @@ import java.util.List;
 public interface AmigurumiRepository extends JpaRepository<AmigurumiEntity,Integer> {
     List<AmigurumiEntity> findByEstadoTrueAndStockGreaterThan(int mayorque);
     List<AmigurumiEntity> findByIdCategoria(int categoria);
+
 }

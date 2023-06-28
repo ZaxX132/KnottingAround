@@ -31,6 +31,7 @@ public class OrderAmigurumiEntity {
     @JoinColumn(name = "id_venta",referencedColumnName = "id",insertable = false,updatable = false)
     private OrderEntity order;
 
+
     @OneToOne
     @JoinColumn(name = "id_amigurumi",referencedColumnName = "id",updatable = false,insertable = false)
     private AmigurumiEntity amigurumi;

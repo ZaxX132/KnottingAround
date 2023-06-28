@@ -1,6 +1,6 @@
 package com.zaxx.KnottingAround.service;
 
-import com.zaxx.KnottingAround.domain.orderDto.OrderUpdateEstadoDto;
+import com.zaxx.KnottingAround.domain.dto.orderDto.OrderUpdateEstadoDto;
 import com.zaxx.KnottingAround.persistence.entity.OrderEntity;
 import com.zaxx.KnottingAround.persistence.repository.OrderRepository;
 import org.springframework.stereotype.Service;
@@ -23,6 +23,9 @@ public class OrderService {
     }
     public List<OrderEntity> getAllNotApproved(){
         return this.orderRepository.findByEstadoFalse();
+    }
+    public List<OrderEntity> getOrderByUser(String usuario){
+        return this.orderRepository.findByUsuario(usuario);
     }
     @Transactional
     public void updateEstadoOrder(OrderUpdateEstadoDto orderUpdateEstadoDto){

@@ -3,9 +3,7 @@ package com.zaxx.KnottingAround.web.controller;
 import com.zaxx.KnottingAround.persistence.entity.CategoryEntity;
 import com.zaxx.KnottingAround.service.CategoryService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,5 +18,27 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<List<CategoryEntity>> getAll(){
         return ResponseEntity.ok(this.categoryService.getAll());
+    }
+    @PostMapping("/admin/new")
+    public ResponseEntity<CategoryEntity> createNew(@RequestBody CategoryEntity category){
+        if(category.getId()==null || !categoryService.exists(category.getId())){
+            return ResponseEntity.ok(categoryService.save(category));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+    @PutMapping("/admin/update")
+    public ResponseEntity<CategoryEntity> update(@RequestBody CategoryEntity category){
+        if(category.getId()!=null && categoryService.exists(category.getId())){
+            return ResponseEntity.ok(categoryService.save(category));
+        }
+        return ResponseEntity.badRequest().build();
+    }
+    @DeleteMapping("/admin/delete/{id}")
+    public ResponseEntity<Void> delete(@PathVariable int id){
+        if(categoryService.exists(id)){
+            categoryService.delete(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

@@ -15,4 +15,7 @@ public class UserService {
     public List<UserEntity> getAll(){
         return this.userRepository.findAll();
     }
+    public UserEntity getUserByUsername(String username){
+        return this.userRepository.findById(username).get();
+    }
 }

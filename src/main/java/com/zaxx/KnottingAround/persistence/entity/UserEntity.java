@@ -29,7 +29,7 @@ public class UserEntity {
     private Boolean locked;
     @Column
     private Boolean disabled;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private List<UserRoleEntity> roles;
 

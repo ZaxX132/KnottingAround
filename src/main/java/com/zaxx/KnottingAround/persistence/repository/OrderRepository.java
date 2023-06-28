@@ -12,4 +12,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity,Integer> {
     List<OrderEntity> findByEstadoTrue();
     @Procedure(value = "actualizar_estado_de_ventar")
     void actualizarEstado(@Param("idOrder")int idOrder,@Param("state") boolean estado);
+    List<OrderEntity> findByUsuario(String usuario);
+
 }

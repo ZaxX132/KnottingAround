@@ -1,4 +1,4 @@
-package com.zaxx.KnottingAround.domain.orderDto;
+package com.zaxx.KnottingAround.domain.dto.orderDto;
 
 import lombok.Data;
 
