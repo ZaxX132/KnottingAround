@@ -29,6 +29,7 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeHttpRequests()
                 .requestMatchers("/api/auth/login").permitAll()
+                .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/amigurumi/getAvailable").permitAll()
                 .requestMatchers("/api/amigurumi/getAll").permitAll()
                 .requestMatchers("/api/amigurumi/byCategoria/*").permitAll()
