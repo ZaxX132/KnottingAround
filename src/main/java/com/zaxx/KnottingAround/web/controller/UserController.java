@@ -31,13 +31,13 @@ public class UserController {
         userService.saveUser(userUpdateDto,authentication);
         return ResponseEntity.ok(userShowService.getUserByUsername(authentication.getPrincipal().toString()));
     }
-    @PutMapping("/admin/ban/{username}")
-    public ResponseEntity<Void> banUser(@PathVariable String username){
+    @PutMapping("/admin/ban")
+    public ResponseEntity<Void> banUser(@RequestParam String username){
         userService.banUser(username);
         return ResponseEntity.ok().build();
     }
-    @PutMapping("/admin/unban/{username}")
-    public ResponseEntity<Void> unBanUser(@PathVariable String username){
+    @PutMapping("/admin/unban")
+    public ResponseEntity<Void> unBanUser(@RequestParam  String username){
         userService.unbanUser(username);
         return ResponseEntity.ok().build();
     }

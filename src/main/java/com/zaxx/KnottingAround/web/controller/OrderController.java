@@ -35,8 +35,8 @@ public class OrderController {
     public ResponseEntity<List<OrderEntity>> getAll(){
         return ResponseEntity.ok(orderService.getAll());
     }
-    @GetMapping("/admin/getOrders/{username}")
-    public ResponseEntity<List<OrderEntity>> getAllByUsername(@PathVariable String username){
+    @GetMapping("/admin/getOrders")
+    public ResponseEntity<List<OrderEntity>> getAllByUsername(@RequestParam String username){
         return ResponseEntity.ok(orderService.getOrderByUser(username));
     }
     @GetMapping("/admin/getApproved")

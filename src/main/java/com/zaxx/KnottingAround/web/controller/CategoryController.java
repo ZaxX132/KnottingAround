@@ -33,8 +33,8 @@ public class CategoryController {
         }
         return ResponseEntity.badRequest().build();
     }
-    @DeleteMapping("/admin/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable int id){
+    @DeleteMapping("/admin/delete")
+    public ResponseEntity<Void> delete(@RequestParam int id){
         if(categoryService.exists(id)){
             categoryService.delete(id);
             return ResponseEntity.ok().build();

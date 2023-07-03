@@ -22,7 +22,7 @@ public interface UserRepository extends JpaRepository<UserEntity,String> {
     void updateCelularAndApodo(String celular,String apodo,String usuario);
     @Query(value = "UPDATE usuarios " +
             "SET " +
-            "lockedr=:locked, " +
+            "locked=:locked, " +
             "disabled=:disabled " +
             "WHERE usuario=:usuario",nativeQuery = true)
     @Modifying

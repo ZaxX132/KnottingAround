@@ -25,9 +25,11 @@ public class UserService {
     public void saveUser(UserUpdateDto userUpdateDto, Authentication authentication){
         userRepository.updateCelularAndApodo(userUpdateDto.getCelular(),userUpdateDto.getApodo(),authentication.getPrincipal().toString());
     }
+    @Transactional
     public void banUser(String user){
         userRepository.updateLockedandDisabled(true,true,user);
     }
+    @Transactional
     public void unbanUser(String user){
         userRepository.updateLockedandDisabled(false,false,user);
     }

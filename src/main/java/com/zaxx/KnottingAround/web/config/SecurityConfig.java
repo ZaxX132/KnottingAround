@@ -32,7 +32,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/auth/register").permitAll()
                 .requestMatchers("/api/amigurumi/getAvailable").permitAll()
                 .requestMatchers("/api/amigurumi/getAll").permitAll()
-                .requestMatchers("/api/amigurumi/byCategoria/*").permitAll()
+                .requestMatchers("/api/amigurumi/byCategoria").permitAll()
                 .requestMatchers("/api/categoria").permitAll()
                 .requestMatchers("/api/order/customer/**").hasAnyRole("CUSTOMER","ADMIN")
                 .requestMatchers("/api/user/customer/**").hasAnyRole("CUSTOMER","ADMIN")

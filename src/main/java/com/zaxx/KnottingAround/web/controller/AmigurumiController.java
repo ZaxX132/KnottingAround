@@ -23,8 +23,8 @@ public class AmigurumiController {
     public ResponseEntity<List<AmigurumiEntity>> getAll(){
         return ResponseEntity.ok(amigurumiService.getAllAvailable());
     }
-    @GetMapping("/byCategoria/{id}")
-    public ResponseEntity<List<AmigurumiEntity>> getByCategoria(@PathVariable int id){
+    @GetMapping("/byCategoria")
+    public ResponseEntity<List<AmigurumiEntity>> getByCategoria(@RequestParam int id){
         return ResponseEntity.ok(amigurumiService.getByCategoria(id));
     }
     @PostMapping("/admin/new")
@@ -41,8 +41,8 @@ public class AmigurumiController {
         }
         return ResponseEntity.notFound().build();
     }
-    @DeleteMapping("/admin/delete/{id}")
-    public ResponseEntity<Boolean> delete(@PathVariable int id){
+    @DeleteMapping("/admin/delete")
+    public ResponseEntity<Boolean> delete(@RequestParam int id){
         if(amigurumiService.exists(id)){
             amigurumiService.delete(id);
            return ResponseEntity.ok().build();
