@@ -3,14 +3,21 @@ package com.zaxx.KnottingAround.web.config;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 @Component
 public class JwtUtil {
-    private static String SECRET_KEY= "nbjfjaosucjcjijajsojfbnzxjcnasdasdasdasdnkja";
-    private static Algorithm ALGORITHM = Algorithm.HMAC256(SECRET_KEY);
+    private static Algorithm ALGORITHM;
+    JwtUtil(@Value("${security.jwt.secret}") String jwtSecret){
+       ALGORITHM = Algorithm.HMAC256(jwtSecret);
+    }
+    @Value("${security.jwt.ttldays}")
+    private static int timeInDays;
+
+
     public String create(String username){
         return JWT.create()
                 .withSubject(username)

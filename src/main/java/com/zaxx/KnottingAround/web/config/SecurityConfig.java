@@ -34,6 +34,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/amigurumi/getAll").permitAll()
                 .requestMatchers("/api/amigurumi/byCategoria/*").permitAll()
                 .requestMatchers("/api/categoria").permitAll()
+                .requestMatchers("/api/order/customer/**").hasAnyRole("CUSTOMER","ADMIN")
+                .requestMatchers("/api/user/customer/**").hasAnyRole("CUSTOMER","ADMIN")
                 .requestMatchers("/api/amigurumi/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/categoria/admin/**").hasRole("ADMIN")
                 .requestMatchers("/api/order/admin/**").hasRole("ADMIN")

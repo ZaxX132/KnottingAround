@@ -1,14 +1,14 @@
 package com.zaxx.KnottingAround.web.controller;
 
 import com.zaxx.KnottingAround.domain.dto.userDto.UserShowDto;
+import com.zaxx.KnottingAround.domain.dto.userDto.UserUpdateDto;
 import com.zaxx.KnottingAround.domain.service.UserShowService;
 import com.zaxx.KnottingAround.persistence.entity.UserEntity;
 import com.zaxx.KnottingAround.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +26,19 @@ public class UserController {
     public ResponseEntity<UserShowDto> getUser(Authentication authentication){
         return ResponseEntity.ok(userShowService.getUserByUsername(authentication.getPrincipal().toString()));
     }
-
+    @PutMapping("/customer/update")
+    public ResponseEntity<UserShowDto> updateUser(@Valid @RequestBody UserUpdateDto userUpdateDto, Authentication authentication){
+        userService.saveUser(userUpdateDto,authentication);
+        return ResponseEntity.ok(userShowService.getUserByUsername(authentication.getPrincipal().toString()));
+    }
+    @PutMapping("/admin/ban/{username}")
+    public ResponseEntity<Void> banUser(@PathVariable String username){
+        userService.banUser(username);
+        return ResponseEntity.ok().build();
+    }
+    @PutMapping("/admin/unban/{username}")
+    public ResponseEntity<Void> unBanUser(@PathVariable String username){
+        userService.unbanUser(username);
+        return ResponseEntity.ok().build();
+    }
 }

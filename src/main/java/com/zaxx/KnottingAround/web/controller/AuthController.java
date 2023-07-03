@@ -8,6 +8,7 @@ import com.zaxx.KnottingAround.excepcions.registerExceptions.NickNameAlredyExist
 import com.zaxx.KnottingAround.excepcions.registerExceptions.UserAlredyExistsException;
 import com.zaxx.KnottingAround.service.security.UserRegisterService;
 import com.zaxx.KnottingAround.web.config.JwtUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -44,8 +45,9 @@ public class AuthController {
         return  ResponseEntity.ok().header(HttpHeaders.AUTHORIZATION,jwt).build();
     }
     @PostMapping("/register")
-    public ResponseEntity<Void> register(@RequestBody UserRegisterDto register) throws CellPhoneAlredyExistsException
+    public ResponseEntity<Void> register(@Valid @RequestBody UserRegisterDto register) throws CellPhoneAlredyExistsException
             , UserAlredyExistsException, EmailAlredyExistsException, NickNameAlredyExistsException {
+
         if(register.getPassword().equals(register.getMatchingPassword())){
            registerService.register(register);
           return ResponseEntity.ok().build();

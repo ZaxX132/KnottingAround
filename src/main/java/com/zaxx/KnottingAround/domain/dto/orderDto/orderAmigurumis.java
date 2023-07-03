@@ -1,14 +1,16 @@
 package com.zaxx.KnottingAround.domain.dto.orderDto;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
-public class OrderUpdateEstadoDto {
+public class orderAmigurumis {
     @NotBlank
-    @Min(0)
-    private Integer id;
+    private int idAmigurumi;
     @NotBlank
-    private Boolean estado;
+    @Min(1)
+    @Max(5)
+    private int cantidad;
 }

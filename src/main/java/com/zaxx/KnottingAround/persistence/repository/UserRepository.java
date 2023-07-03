@@ -13,4 +13,18 @@ public interface UserRepository extends JpaRepository<UserEntity,String> {
     @Query(value = "Insert into roles_usuario(usuario,role,granted_date) values(:user,'CUSTOMER',CURTIME())",nativeQuery = true)
     @Modifying
     void insertCustomerRole(String user);
+    @Query(value = "UPDATE usuarios " +
+            "SET " +
+            "celular=:celular, " +
+            "apodo=:apodo " +
+            "WHERE usuario=:usuario",nativeQuery = true)
+    @Modifying
+    void updateCelularAndApodo(String celular,String apodo,String usuario);
+    @Query(value = "UPDATE usuarios " +
+            "SET " +
+            "lockedr=:locked, " +
+            "disabled=:disabled " +
+            "WHERE usuario=:usuario",nativeQuery = true)
+    @Modifying
+    void updateLockedandDisabled(boolean locked,boolean disabled,String usuario);
 }

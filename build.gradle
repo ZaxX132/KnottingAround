@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.zaxx'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0'
 
 java {
 	sourceCompatibility = '17'
@@ -20,11 +20,20 @@ configurations {
 repositories {
 	mavenCentral()
 }
+ext {
+	set('springCloudVersion', "2022.0.3")
+}
+
+
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springframework.cloud:spring-cloud-starter-config'
+	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
+
 	implementation 'com.auth0:java-jwt:4.3.0'
 	implementation 'org.mapstruct:mapstruct:1.5.3.Final'
 
@@ -35,6 +44,12 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
 
 tasks.named('test') {
 	useJUnitPlatform()
